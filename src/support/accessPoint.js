@@ -62,7 +62,7 @@ class commonAccessPoint {
     post(){
         const self = this;
         this.router.route(`${this.basePath}`)
-            .post(function(req){
+            .post(function(req, res){
                 req.dome = {};
                 res.dome = {};
                 const businessLogicInstance = new self.businessLogic(...arguments);
@@ -73,7 +73,7 @@ class commonAccessPoint {
     put(){
         const self = this;
         this.router.route(`${this.basePath}`)
-            .put(function(req){
+            .put(function(req, res){
                 req.dome = {};
                 res.dome = {};
                 const businessLogicInstance = new self.businessLogic(...arguments);
@@ -84,7 +84,7 @@ class commonAccessPoint {
     delete(){
         const self = this;
         this.router.route(`${this.basePath}`)
-            .delete(function(req){
+            .delete(function(req, res){
                 req.dome = {};
                 res.dome = {};
                 const businessLogicInstance = new self.businessLogic(...arguments);

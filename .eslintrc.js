@@ -7,6 +7,9 @@ module.exports                      = {
         "node"                      : true,
         "mocha"                     : true
     },
+    "parserOptions": {
+        "ecmaVersion"               : 8
+    },
     "rules"                         : {
         "comma-style"               : ["error", "last"],
         "indent"                    : ["error", 4],
