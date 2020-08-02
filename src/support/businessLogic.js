@@ -2,14 +2,12 @@
 
 const inputActions             = {
     "get"                      : { schemeValidationFunction : "getInputSchemeValidator",      schemeTransformProcess : "getInputOverride" },
-    "getAll"                   : { schemeValidationFunction : "getAllInputSchemeValidator",   schemeTransformProcess : "getAllInputOverride" },
     "post"                     : { schemeValidationFunction : "postInputSchemeValidator",     schemeTransformProcess : "postInputOverride" },
     "put"                      : { schemeValidationFunction : "putInputSchemeValidator",      schemeTransformProcess : "putInputOverride" },
     "delete"                   : { schemeValidationFunction : "deleteInputSchemeValidator",   schemeTransformProcess : "deleteInputOverride" },
 };
 const outputActions            = {
     "get"                      : { schemeValidationFunction : "getOutputSchemeValidator",      schemeTransformProcess : "getOutputOverride" },
-    "getAll"                   : { schemeValidationFunction : "getAllOutputSchemeValidator",   schemeTransformProcess : "getAllOutputOverride" },
     "post"                     : { schemeValidationFunction : "postOutputSchemeValidator",     schemeTransformProcess : "postOutputOverride" },
     "put"                      : { schemeValidationFunction : "putOutputSchemeValidator",      schemeTransformProcess : "putOutputOverride" },
     "delete"                   : { schemeValidationFunction : "deleteOutputSchemeValidator",   schemeTransformProcess : "deleteOutputOverride" },
@@ -38,29 +36,6 @@ class commonBusinessLogic {
                 }
                 else{
                     this.getResponseOverride();
-                }
-            }
-        }
-    }
-
-    async getAllInputSchemeValidator(data){ return true; }
-    async getAllOutputSchemeValidator(data){ return true; }
-    async getAllInputOverride(data){ this.request.dome.input = data; }
-    async getAllOutputOverride(data){ this.response.dome.output = data; }
-    async getAllProcess(){ return { data : "getAll" }; }
-    async getAll(){
-        let isValidInput                = await this.schemeProcess("input", "getAll", this.request);
-
-        if(isValidInput){
-            let responseData            = await this.getAllProcess(),
-                isValidOutput           = await this.schemeProcess("output", "getAll", responseData);
-
-            if(isValidOutput && !this.response.headersSent){
-                if(!this.getAllResponseOverride){
-                    this.response.status(200).json(this.response.dome.output);
-                }
-                else{
-                    this.getAllResponseOverride();
                 }
             }
         }
@@ -116,9 +91,9 @@ class commonBusinessLogic {
     async deleteOutputSchemeValidator(data){ return true; }
     async deleteInputOverride(data){ this.request.dome.input = data; }
     async deleteOutputOverride(data){ this.response.dome.output = data; }
-    async deleteProcess(){ return { data : "put" }; }
+    async deleteProcess(){ return { data : "delete" }; }
     async delete(){
-        let isValidInput                = await this.commonInput("input", "delete", this.request);
+        let isValidInput                = await this.schemeProcess("input", "delete", this.request);
 
         if(isValidInput){
             let responseData            = await this.deleteProcess(),

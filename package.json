@@ -1,8 +1,9 @@
 {
   "name": "xdome-extension-rest",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "license": "MIT",
   "description": "xdome-extension-rest",
+  "main": "src/index.js",
   "scripts": {
     "test": "mocha --recursive",
     "lint": "eslint .",
@@ -11,21 +12,15 @@
   "files": [
     "/src"
   ],
-  "dependencies": {
-    "express": "^4.17.1",
-    "body-parser": "^1.19.0",
-    "compression": "^1.7.4",
-    "cors": "^2.8.5"
-  },
   "devDependencies": {
-    "@commitlint/cli": "^8.2.0",
-    "@commitlint/config-conventional": "^8.2.0",
+    "@commitlint/cli": "^9.1.2",
+    "@commitlint/config-conventional": "^9.1.1",
     "chai": "^4.2.0",
-    "eslint": "^6.6.0",
-    "husky": "^3.0.9",
-    "mocha": "^6.2.2",
-    "nyc": "^14.1.1",
-    "rewire": "^4.0.1"
+    "eslint": "^7.6.0",
+    "husky": "^4.2.5",
+    "mocha": "^8.1.0",
+    "nyc": "^15.1.0",
+    "rewire": "^5.0.0"
   },
   "husky": {
     "hooks": {
@@ -35,17 +30,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jjdltc/base_server.git"
+    "url": "git+https://github.com/x-dome/xdome-extension-rest.git"
   },
+  "bugs": {
+    "url": "https://github.com/x-dome/xdome-extension-rest/issues"
+  },
+  "homepage": "https://github.com/x-dome/xdome-extension-rest",
   "author": "Joel De La Torriente <jjdltc@gmail.com> (https://github.com/jjdltc)",
   "maintainers": [
     "Joel De La Torriente <jjdltc@gmail.com> (http://jjdltc.com)"
   ],
   "contributors": [
     "Joel De La Torriente <jjdltc@gmail.com> (http://jjdltc.com)"
-  ],
-  "bugs": {
-    "url": "https://github.com/jjdltc/base_server/issues"
-  },
-  "homepage": "https://github.com/jjdltc/base_server#readme"
+  ]
 }

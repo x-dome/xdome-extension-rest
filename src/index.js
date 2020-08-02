@@ -1,17 +1,22 @@
 "use strict";
 
 const path                  = require('path');
-const accessPointExtends    = require('./support/accessPoints');
-const accessPointPlugin     = require('./plugin/accessPoints');
 
-module.exports          = {
-    templates           : {
-        accessPoint     : path.join(__dirname, 'templates'),
+module.exports              = {
+    paths                   : {
+        templates           : path.join(__dirname, 'templates'),
+        support             : path.join(__dirname, 'support'),
+        plugin              : path.join(__dirname, 'plugin'),
     },
-    support             : {
-        accessPoint     : accessPointExtends,
+    templates               : {
+        accessPoint         : require('./templates/accessPoint'),
+        businessLogic       : require('./templates/businessLogic'),
     },
-    plugin              : {
-        accessPoint     : accessPointPlugin,
+    support                 : {
+        accessPoint         : require('./support/accessPoint'),
+        businessLogic       : require('./support/businessLogic'),
+    },
+    plugin                  : {
+        accessPoint         : require('./plugin/accessPoints'),
     },
 };

@@ -5,21 +5,18 @@ class commonAccessPoint {
 
     setRoutes(){
         this.commonEntryRoutes();
-        const self = this;
 
         if(this.routesOverride){
             for(let route in this.routesOverride){
-                const method    = this.routesOverride[route].method.toLowerCase();
+                const verb      = this.routesOverride[route].method.toLowerCase();
                 const callback  = this.routesOverride[route].callback;
-                this.router.route(`${this.basePath}/${route}`)[method](function(){
-                    const businessLogicInstance = new self.businessLogic(...arguments);
-                    businessLogicInstance[callback](...arguments);
-                });
+                this.commonAccessPointRoute(verb, callback);
             }
         }
 
         this.allowedVerbs.forEach((verb)=>{
-            this[verb.toLowerCase()]();
+            verb = verb.toLowerCase()
+            this.commonAccessPointRoute(verb);
         });
 
         this.rejects();
@@ -48,48 +45,19 @@ class commonAccessPoint {
             });
     }
 
-    get(){
+    commonAccessPointRoute(verb, callbackName){
         const self = this;
-        this.router.route(`${this.basePath}`)
-            .get(function(req, res){
-                req.dome = {};
-                res.dome = {};
-                const businessLogicInstance = new self.businessLogic(...arguments);
-                businessLogicInstance.get();
-            });
-    }
 
-    post(){
-        const self = this;
-        this.router.route(`${this.basePath}`)
-            .post(function(req, res){
-                req.dome = {};
-                res.dome = {};
-                const businessLogicInstance = new self.businessLogic(...arguments);
-                businessLogicInstance.post();
-            });
-    }
+        callbackName = (callbackName)
+            ? callbackName
+            : verb;
 
-    put(){
-        const self = this;
-        this.router.route(`${this.basePath}`)
-            .put(function(req, res){
-                req.dome = {};
-                res.dome = {};
-                const businessLogicInstance = new self.businessLogic(...arguments);
-                businessLogicInstance.put();
-            });
-    }
-
-    delete(){
-        const self = this;
-        this.router.route(`${this.basePath}`)
-            .delete(function(req, res){
-                req.dome = {};
-                res.dome = {};
-                const businessLogicInstance = new self.businessLogic(...arguments);
-                businessLogicInstance.delete();
-            });
+        this.router.route(`${this.basePath}`)[verb](function(req, res){
+            req.dome = {};
+            res.dome = {};
+            const businessLogicInstance = new self.businessLogic(...arguments);
+            businessLogicInstance[callbackName](...arguments);
+        });
     }
 }
 
