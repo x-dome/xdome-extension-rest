@@ -24,7 +24,7 @@ class commonBusinessLogic {
     async getOutputOverride(data){ this.response.dome.output = data; }
     async getProcess(){ return { data : "get" }; }
     async get(){
-        let isValidInput                = await this.schemeProcess("input", "get", this.request);
+        let isValidInput                = await this.schemeProcess("input", "get", this.request.body);
 
         if(isValidInput){
             let responseData            = await this.getProcess(),
@@ -47,7 +47,7 @@ class commonBusinessLogic {
     async postOutputOverride(data){ this.response.dome.output = data; }
     async postProcess(){ return { data : "post" }; }
     async post(){
-        let isValidInput                = await this.schemeProcess("input", "post", this.request);
+        let isValidInput                = await this.schemeProcess("input", "post", this.request.body);
 
         if(isValidInput){
             let responseData            = await this.postProcess(),
@@ -70,7 +70,7 @@ class commonBusinessLogic {
     async putOutputOverride(data){ this.response.dome.output = data; }
     async putProcess(){ return { data : "put" }; }
     async put(){
-        let isValidInput                = await this.schemeProcess("input", "put", this.request);
+        let isValidInput                = await this.schemeProcess("input", "put", this.request.body);
 
         if(isValidInput){
             let responseData            = await this.putProcess(),
@@ -93,7 +93,7 @@ class commonBusinessLogic {
     async deleteOutputOverride(data){ this.response.dome.output = data; }
     async deleteProcess(){ return { data : "delete" }; }
     async delete(){
-        let isValidInput                = await this.schemeProcess("input", "delete", this.request);
+        let isValidInput                = await this.schemeProcess("input", "delete", this.request.body);
 
         if(isValidInput){
             let responseData            = await this.deleteProcess(),

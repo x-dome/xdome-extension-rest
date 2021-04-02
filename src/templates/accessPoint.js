@@ -4,7 +4,7 @@
 module.exports = `
 "use strict";
 
-const commonAccessPoint     = require("xdome-extension-rest").support.accessPoint;
+const commonAccessPoint     = require("@x-dome/xdome-extension-rest").support.accessPoint;
 
 class {className} extends commonAccessPoint{
     constructor(router){
