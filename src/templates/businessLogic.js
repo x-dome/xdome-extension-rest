@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars, no-undef */
 "use strict";
 
 module.exports = `
@@ -18,4 +17,3 @@ class {className} extends businessLogic{
 
 module.exports = {className};
 `;
-/* eslint-enable no-unused-vars, no-undef */
